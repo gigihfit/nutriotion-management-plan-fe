@@ -1,8 +1,13 @@
 import { useState } from "react";
 import { Button, Divider, Input } from "antd-mobile";
-import layout from "../components/hocs/layout";
-import BackButton from "../components/BackButton";
-import { AiFillEyeInvisible, AiFillEye } from "react-icons/ai";
+import layout from "../../components/hocs/layout";
+import BackButton from "../../components/BackButton";
+import {
+    AiFillEyeInvisible,
+    AiFillEye,
+    AiOutlineUser,
+    AiOutlineLock,
+} from "react-icons/ai";
 import { useNavigate } from "react-router-dom";
 
 const LoginPage = () => {
@@ -44,28 +49,33 @@ const LoginPage = () => {
         <div className="relative h-full">
             <div className="flex items-center justify-center relative">
                 <div className="absolute left-0">
-                    <BackButton />
+                    <BackButton redirectTo={"/"} />
                 </div>
                 <p className="text-2xl">Let's get you signed in.</p>
             </div>
             <Divider className="bg-blue-500" />
 
             <p className="text-lg">Username.</p>
-            <Input
-                placeholder="Please Input Your Username"
-                className="border-blue-500 rounded-xl h-12 border-2 pl-2"
-                onChange={(val) => handleUsername(val)}
-            />
-            <p className="text-red-500" hidden={!errorUsername}>
+            <div className="flex border-blue-500 rounded-xl h-12 border-2 items-center px-2 relative">
+                <AiOutlineUser size={24} />
+                <Input
+                    placeholder="Please Input Your Username"
+                    onChange={(val) => handleUsername(val)}
+                    className="px-2"
+                />
+            </div>
+            <p className="text-red-500 absolute mt-2" hidden={!errorUsername}>
                 Username cannot be empty!
             </p>
 
-            <p className="text-lg mt-4">Password.</p>
-            <div className="flex border-blue-500 rounded-xl h-12 border-2 items-center px-2">
+            <p className="text-lg mt-8">Password.</p>
+            <div className="flex border-blue-500 rounded-xl h-12 border-2 items-center px-2 relative">
+                <AiOutlineLock size={24} />
                 <Input
                     placeholder="Please Input Your Password"
                     type={visible ? "text" : "password"}
                     onChange={(val) => handlePassword(val)}
+                    className="px-2"
                 />
                 {!visible ? (
                     <AiFillEyeInvisible
@@ -76,19 +86,31 @@ const LoginPage = () => {
                     <AiFillEye onClick={() => setVisible(false)} size={24} />
                 )}
             </div>
-            <p className="text-red-500" hidden={!errorPassword}>
+            <p className="text-red-500 absolute mt-2" hidden={!errorPassword}>
                 Password cannot be empty!
             </p>
 
-            <Button
-                block
-                type="submit"
-                size="large"
-                className="bg-blue-500 rounded-xl text-white absolute bottom-0"
-                onClick={handleLogin}
-            >
-                Sign In
-            </Button>
+            <div className="w-full absolute mt-2 text-right">
+                <a>Forgot Password.</a>
+            </div>
+
+            <div className="absolute bottom-0 w-full">
+                <div className="flex justify-center mb-2">
+                    <p className="text-gray-500">
+                        Don't Have an Account Yet?&nbsp;
+                    </p>
+                    <a onClick={() => navigate("/register")}>Register.</a>
+                </div>
+                <Button
+                    block
+                    type="submit"
+                    size="large"
+                    className="bg-blue-500 rounded-xl text-white"
+                    onClick={handleLogin}
+                >
+                    Sign In
+                </Button>
+            </div>
         </div>
     );
 };

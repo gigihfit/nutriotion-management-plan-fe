@@ -38,7 +38,7 @@ const HomePage = () => {
             <div className="h-1/4 justify-end flex flex-col">
                 <Button
                     block
-                    className="mb-2 rounded-xl border-blue-500 bg-white"
+                    className="mb-2 rounded-xl border-blue-500 bg-white border-2"
                     size="large"
                     onClick={handleRegister}
                 >

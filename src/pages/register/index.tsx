@@ -1,8 +1,13 @@
 import { useState } from "react";
 import { Button, Divider, Input } from "antd-mobile";
-import layout from "../components/hocs/layout";
-import BackButton from "../components/BackButton";
-import { AiFillEyeInvisible, AiFillEye } from "react-icons/ai";
+import layout from "../../components/hocs/layout";
+import BackButton from "../../components/BackButton";
+import {
+    AiFillEyeInvisible,
+    AiFillEye,
+    AiOutlineUser,
+    AiOutlineLock,
+} from "react-icons/ai";
 import { useNavigate } from "react-router-dom";
 
 const RegisterPage = () => {
@@ -45,6 +50,10 @@ const RegisterPage = () => {
         if (password.length === 0) {
             setErrorPassword(true);
         }
+
+        if (confirmPassword.length === 0) {
+            setErrorConfirmPassword(true);
+        }
     };
 
     const handleUsername = (val: string) => {
@@ -67,28 +76,33 @@ const RegisterPage = () => {
         <div className="relative h-full">
             <div className="flex items-center justify-center relative">
                 <div className="absolute left-0">
-                    <BackButton />
+                    <BackButton redirectTo={"/"} />
                 </div>
                 <p className="text-2xl">Let's get you registered.</p>
             </div>
             <Divider className="bg-blue-500" />
 
             <p className="text-lg">Username.</p>
-            <Input
-                placeholder="Please Input Your Username"
-                className="border-blue-500 rounded-xl h-12 border-2 pl-2"
-                onChange={(val) => handleUsername(val)}
-            />
-            <p className="text-red-500" hidden={!errorUsername}>
+            <div className="flex border-blue-500 rounded-xl h-12 border-2 items-center px-2 relative">
+                <AiOutlineUser size={24} />
+                <Input
+                    placeholder="Please Input Your Username"
+                    onChange={(val) => handleUsername(val)}
+                    className="px-2"
+                />
+            </div>
+            <p className="text-red-500 absolute mt-2" hidden={!errorUsername}>
                 Username cannot be empty!
             </p>
 
-            <p className="text-lg mt-4">Password.</p>
-            <div className="flex border-blue-500 rounded-xl h-12 border-2 items-center px-2">
+            <p className="text-lg mt-8">Password.</p>
+            <div className="flex border-blue-500 rounded-xl h-12 border-2 items-center px-2 relative">
+                <AiOutlineLock size={24} />
                 <Input
                     placeholder="Please Input Your Password"
                     type={visible ? "text" : "password"}
                     onChange={(val) => handlePassword(val)}
+                    className="px-2"
                 />
                 {!visible ? (
                     <AiFillEyeInvisible
@@ -99,16 +113,18 @@ const RegisterPage = () => {
                     <AiFillEye onClick={() => setVisible(false)} size={24} />
                 )}
             </div>
-            <p className="text-red-500" hidden={!errorPassword}>
+            <p className="text-red-500 absolute mt-2" hidden={!errorPassword}>
                 Password cannot be empty!
             </p>
 
-            <p className="text-lg mt-4">Confirm Password.</p>
-            <div className="flex border-blue-500 rounded-xl h-12 border-2 items-center px-2">
+            <p className="text-lg mt-8">Confirm Password.</p>
+            <div className="flex border-blue-500 rounded-xl h-12 border-2 items-center px-2 relative">
+                <AiOutlineLock size={24} />
                 <Input
                     placeholder="Please Input Your Password"
                     type={visible2 ? "text" : "password"}
                     onChange={(val) => handleConfirmPassword(val)}
+                    className="px-2"
                 />
                 {!visible2 ? (
                     <AiFillEyeInvisible
@@ -119,22 +135,36 @@ const RegisterPage = () => {
                     <AiFillEye onClick={() => setVisible2(false)} size={24} />
                 )}
             </div>
-            <p className="text-red-500" hidden={!errorConfirmPassword}>
+            <p
+                className="text-red-500 absolute mt-2"
+                hidden={!errorConfirmPassword}
+            >
                 Password cannot be empty!
             </p>
-            <p className="text-red-500" hidden={!errorSamePassword}>
+            <p
+                className="text-red-500 absolute mt-2"
+                hidden={!errorSamePassword}
+            >
                 Passwords do not match!
             </p>
 
-            <Button
-                block
-                type="submit"
-                size="large"
-                className="bg-blue-500 rounded-xl text-white absolute bottom-0"
-                onClick={handleRegister}
-            >
-                Sign In
-            </Button>
+            <div className="absolute bottom-0 w-full">
+                <div className="flex justify-center mb-2">
+                    <p className="text-gray-500">
+                        Alreaady Have an Account?&nbsp;
+                    </p>
+                    <a onClick={() => navigate("/login")}>Login.</a>
+                </div>
+                <Button
+                    block
+                    type="submit"
+                    size="large"
+                    className="bg-white rounded-xl border-blue-500 border-2"
+                    onClick={handleRegister}
+                >
+                    Register
+                </Button>
+            </div>
         </div>
     );
 };

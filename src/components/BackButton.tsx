@@ -1,12 +1,16 @@
 import { Button } from "antd-mobile";
-import { useNavigate } from "react-router-dom";
+import { To, useNavigate } from "react-router-dom";
 import { IoIosArrowBack } from "react-icons/io";
 
-const BackButton = () => {
+interface Props {
+    redirectTo?: To
+}
+
+const BackButton = (props : Props) => {
     const navigate = useNavigate();
 
     const handleBack = () => {
-        navigate(-1);
+        props.redirectTo ? navigate(props.redirectTo) : navigate(-1);
     };
 
     return (
