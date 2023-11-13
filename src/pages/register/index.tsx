@@ -39,7 +39,7 @@ const RegisterPage = () => {
             if (password != confirmPassword) {
                 setErrorSamePassword(true);
             } else {
-                navigate("/home");
+                navigate("/bmi");
             }
         }
 
@@ -83,7 +83,7 @@ const RegisterPage = () => {
             <Divider className="bg-blue-500" />
 
             <p className="text-lg">Username.</p>
-            <div className="flex border-blue-500 rounded-xl h-12 border-2 items-center px-2 relative">
+            <div className="flex border-blue-500 rounded-xl h-12 border-2 items-center px-2 relative bg-white">
                 <AiOutlineUser size={24} />
                 <Input
                     placeholder="Please Input Your Username"
@@ -96,7 +96,7 @@ const RegisterPage = () => {
             </p>
 
             <p className="text-lg mt-8">Password.</p>
-            <div className="flex border-blue-500 rounded-xl h-12 border-2 items-center px-2 relative">
+            <div className="flex border-blue-500 rounded-xl h-12 border-2 items-center px-2 relative bg-white">
                 <AiOutlineLock size={24} />
                 <Input
                     placeholder="Please Input Your Password"
@@ -118,7 +118,7 @@ const RegisterPage = () => {
             </p>
 
             <p className="text-lg mt-8">Confirm Password.</p>
-            <div className="flex border-blue-500 rounded-xl h-12 border-2 items-center px-2 relative">
+            <div className="flex border-blue-500 rounded-xl h-12 border-2 items-center px-2 relative bg-white">
                 <AiOutlineLock size={24} />
                 <Input
                     placeholder="Please Input Your Password"
