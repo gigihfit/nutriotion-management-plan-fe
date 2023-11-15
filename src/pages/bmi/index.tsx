@@ -5,8 +5,11 @@ import layout from "../../components/hocs/layout";
 import { Button, Divider, Input, Radio } from "antd-mobile";
 import BackButton from "../../components/BackButton";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const BMIPage = () => {
+    const navigate = useNavigate();
+
     const [age, setAge] = useState<number>(0);
     const [gender, setGender] = useState<string>("");
     const [height, setHeight] = useState<number>(0);
@@ -45,6 +48,7 @@ const BMIPage = () => {
 
         if (age > 0 && gender.length > 0 && height > 0 && weight > 0) {
             console.log("BMI:", calculateBMI(height, weight));
+            navigate("/home");
         }
 
         if (age === 0) {
@@ -76,7 +80,7 @@ const BMIPage = () => {
                 </div>
                 <p className="text-2xl">Please Enter Your Info.</p>
             </div>
-            <Divider className="bg-blue-500" />
+            <Divider className="border rounded-xl border-blue-500" />
 
             <p className="text-lg">Age.</p>
             <div className="flex border-blue-500 rounded-xl h-12 border-2 items-center px-2 relative bg-white">

@@ -53,7 +53,7 @@ const LoginPage = () => {
                 </div>
                 <p className="text-2xl">Let's get you signed in.</p>
             </div>
-            <Divider className="bg-blue-500" />
+            <Divider className="border rounded-xl border-blue-500" />
 
             <p className="text-lg">Username.</p>
             <div className="flex border-blue-500 rounded-xl h-12 border-2 items-center px-2 relative bg-white">
